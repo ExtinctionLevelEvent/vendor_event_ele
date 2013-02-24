@@ -1,6 +1,6 @@
-PRODUCT_BRAND ?= killrom
+PRODUCT_BRAND ?= E.L.E
 
-# killr speed demon
+# extinction level event
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.build.tags=release-keys \
     windowsmgr.max_events_per_sec=512 \
@@ -23,6 +23,14 @@ PRODUCT_PROPERTY_OVERRIDES += \
     pm.sleep_mode=1 \
     ro.home_app_adj=1 \
     ro.ext4fs=1 \
+    dalvik.vm.heapstartsize=128m \
+    dalvik.vm.heapgrowthlimit=320m \
+    dalvik.vm.heapsize=512m \
+    dalvik.vm.heapminfree=512k \
+    dalvik.vm.heapmaxfree=16m \
+    dalvik.vm.heaptargetutilization=0.75 \
+    dalvik.vm.heapidealfree=8388608 \
+    dalvik.vm.heapconcurrentstart=2097152
     persist.sys.use_dithering=0 \
     ro.ril.disable.power.collapse=0 \
     dalvik.vm.execution-mode=int:jit \
@@ -35,15 +43,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     net.dns1=8.8.4.4 \
     net.dns2=8.8.8.8 \
     net.ppp0.dns1=8.8.8.8 \
-    net.ppp0.dns2=8.8.4.4 \
-    net.tcp.buffersize.default=6144,87380,1048576,6144,87380,524288 \
-    net.tcp.buffersize.wifi=524288,1048576,2097152,524288,1048576,2097152 \
-    net.tcp.buffersize.umts=6144,87380,1048576,6144,87380,524288 \
-    net.tcp.buffersize.gprs=6144,87380,1048576,6144,87380,524288 \
-    net.tcp.buffersize.edge=6144,87380,524288,6144,16384,262144 \
-    net.tcp.buffersize.hspa=6144,87380,524288,6144,16384,262144 \
-    net.tcp.buffersize.lte=524288,1048576,2097152,524288,1048576,2097152 \
-    net.tcp.buffersize.hsdpa=6144,87380,1048576,6144,87380,1048576 \
+    net.ppp0.dns2=8.8.4.4
 
 # Bring in all audio files
 include frameworks/base/data/sounds/NewAudio.mk
@@ -51,38 +51,25 @@ include frameworks/base/data/sounds/NewAudio.mk
 # Extra Ringtones
 include frameworks/base/data/sounds/AudioPackageNewWave.mk
 
-# Include KILL audio files
-include vendor/nos/killrom/config/kill_audio.mk
+# Include ELE audio files
+include vendor/event/ele/config/ele_audio.mk
 
 # Bring in all video files
 $(call inherit-product, frameworks/base/data/videos/VideoPackage2.mk)
 
 PRODUCT_PACKAGE_OVERLAYS += \
-vendor/nos/killrom/overlay/common
+vendor/event/ele/overlay/common
 
 # T-Mobile theme engine
-include vendor/nos/killrom/config/themes_common.mk
+include vendor/event/ele/config/themes_common.mk
 
 # init.d support
 PRODUCT_COPY_FILES += \
-    vendor/nos/killrom/prebuilt/system/etc/init.d/01killbomb:system/etc/init.d/01killbomb \
-    vendor/nos/killrom/prebuilt/system/etc/init.d/91killrzipalign:system/etc/init.d/91killrzialign \
-    vendor/nos/killrom/prebuilt/system/etc/init.d/97killrtcp:system/etc/init.d/97killrtcp
-
-ifneq ($(filter killr_mako full_toro,$(TARGET_PRODUCT)),)
-PRODUCT_COPY_FILES += \
-    vendor/nos/killrom/prebuilt/system/etc/init.d/02killrkernel:system/etc/init.d/02killrkernel \
-    vendor/nos/killrom/prebuilt/system/etc/init.d/05killrfs:system/etc/init.d/05killrfs \
-    vendor/nos/killrom/prebuilt/system/etc/init.d/99killrsystem:system/etc/init.d/99killrsystem
-endif
-
-ifeq ($(TARGET_PRODUCT),full_grouper)
-PRODUCT_COPY_FILES += \
-    vendor/nos/killrom/prebuilt/system/etc/init.d/02killrkernel:system/etc/init.d/02killrkernelgrouper \
-    vendor/nos/killrom/prebuilt/system/etc/init.d/03killrgovgrouper:system/etc/init.d/03killrgovgrouper \
-    vendor/nos/killrom/prebuilt/system/etc/init.d/05killrfs:system/etc/init.d/05killrfsgrouper \
-    vendor/nos/killrom/prebuilt/system/etc/init.d/99killrsystem:system/etc/init.d/99killrsystemgrouper
-endif
+    vendor/event/ele/prebuilt/system/etc/init.d/01ele:system/etc/init.d/01ele \
+    vendor/event/ele/prebuilt/system/etc/init.d/91elezipalign:system/etc/init.d/91elezialign \
+    vendor/event/ele/prebuilt/system/etc/init.d/02elekernel:system/etc/init.d/02elekernel \
+    vendor/event/ele/prebuilt/system/etc/init.d/05elefs:system/etc/init.d/05elefs \
+    vendor/event/ele/prebuilt/system/etc/init.d/99elesystem:system/etc/init.d/99elesystem
 
 ifneq ($(TARGET_PRODUCT),full_grouper)
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -91,46 +78,15 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.config.alarm_alert=Nobelium.ogg
 endif
 
-ifeq ($(TARGET_PRODUCT),full_grouper)
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.config.ringtone=EazyE.ogg \
-    ro.config.notification_sound=Nobody-Move.ogg \
-    ro.config.alarm_alert=Nobelium.ogg
-endif
-
-#full speed
-ifneq ($(filter killr_mako full_grouper,$(TARGET_PRODUCT)),)
-PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.heapstartsize=128m \
-    dalvik.vm.heapgrowthlimit=320m \
-    dalvik.vm.heapsize=512m \
-    dalvik.vm.heapminfree=512k \
-    dalvik.vm.heapmaxfree=16m \
-    dalvik.vm.heaptargetutilization=0.75 \
-    dalvik.vm.heapidealfree=8388608 \
-    dalvik.vm.heapconcurrentstart=2097152
-endif
-
-# killr tuna
-ifneq ($(filter full_maguro full_toro,$(TARGET_PRODUCT)),)
-PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.heapstartsize=8m \
-    dalvik.vm.heapgrowthlimit=96m \
-    dalvik.vm.heapsize=256m \
-    dalvik.vm.heaptargetutilization=0.75 \
-    dalvik.vm.heapminfree=512k \
-    dalvik.vm.heapmaxfree=8m
-endif
-
 # sysinit and sysctl support
 PRODUCT_COPY_FILES += \
-    vendor/nos/killrom/prebuilt/system/bin/sysinit:system/bin/sysinit \
-    vendor/nos/killrom/prebuilt/system/etc/sysctl.conf:system/etc/sysctl.conf
+    vendor/event/ele/prebuilt/system/bin/sysinit:system/bin/sysinit \
+    vendor/event/ele/prebuilt/system/etc/sysctl.conf:system/etc/sysctl.conf
 
 # Copy SuperSu
 PRODUCT_COPY_FILES += \
-    vendor/nos/killrom/prebuilt/system/app/SuperSU.apk:system/app/SuperSU.apk \
-    vendor/nos/killrom/prebuilt/system/xbin/su:system/xbin/su
+    vendor/event/ele/prebuilt/system/app/SuperSU.apk:system/app/SuperSU.apk \
+    vendor/event/ele/prebuilt/system/xbin/su:system/xbin/su
 
 #killr extras
 PRODUCT_PACKAGES += \
@@ -140,14 +96,14 @@ PRODUCT_PACKAGES += \
 
 # extras
 PRODUCT_COPY_FILES += \
-    vendor/nos/killrom/prebuilt/system/xbin/zipalign:system/xbin/zipalign \
-    vendor/nos/killrom/prebuilt/system/xbin/sqlite3:system/xbin/sqlite3
+    vendor/event/ele/prebuilt/system/xbin/zipalign:system/xbin/zipalign \
+    vendor/event/ele/prebuilt/system/xbin/sqlite3:system/xbin/sqlite3
 
 # Bootanimation murdr
 ifneq ($(TARGET_BOOTANIMATION_NAME),)
 PRODUCT_COPY_FILES += \
-    vendor/nos/killrom/prebuilt/system/media/$(TARGET_BOOTANIMATION_NAME).zip:system/media/bootanimation.zip
+    vendor/event/ele/prebuilt/system/media/$(TARGET_BOOTANIMATION_NAME).zip:system/media/bootanimation.zip
 else
 PRODUCT_COPY_FILES += \
-    vendor/nos/killrom/prebuilt/system/media/720.zip:system/media/bootanimation.zip
+    vendor/event/ele/prebuilt/system/media/720.zip:system/media/bootanimation.zip
 endif
