@@ -90,7 +90,7 @@ PRODUCT_COPY_FILES += \
 
 #killr extras
 PRODUCT_PACKAGES += \
-        KILLRHome \
+        ELELauncher \
         LockClock \
         SpeedDemon
 
