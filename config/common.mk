@@ -12,9 +12,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     video.accelerate.hw=1 \
     ro.ril.enable.3g.prefix=1 \
     ro.ril.hep=1 \
-    ro.ril.hsxpa=3 \
     ro.ril.enable.dtm=1 \
-    ro.ril.gprsclass=12 \
     ro.ril.hsdpa.category=28 \
     ro.ril.enable.a53=1 \
     ro.ril.enable.3g.prefix=1 \
@@ -88,7 +86,7 @@ PRODUCT_COPY_FILES += \
     vendor/event/ele/prebuilt/system/app/SuperSU.apk:system/app/SuperSU.apk \
     vendor/event/ele/prebuilt/system/xbin/su:system/xbin/su
 
-#killr extras
+#ele extras
 PRODUCT_PACKAGES += \
         ELELauncher \
         LockClock \
@@ -99,7 +97,7 @@ PRODUCT_COPY_FILES += \
     vendor/event/ele/prebuilt/system/xbin/zipalign:system/xbin/zipalign \
     vendor/event/ele/prebuilt/system/xbin/sqlite3:system/xbin/sqlite3
 
-# Bootanimation murdr
+# Bootanimation ele
 ifneq ($(TARGET_BOOTANIMATION_NAME),)
 PRODUCT_COPY_FILES += \
     vendor/event/ele/prebuilt/system/media/$(TARGET_BOOTANIMATION_NAME).zip:system/media/bootanimation.zip
