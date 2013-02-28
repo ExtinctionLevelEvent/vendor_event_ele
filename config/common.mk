@@ -81,7 +81,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 endif
 
 # killr tuna
-ifneq ($(filter full_maguro full_toro,$(TARGET_PRODUCT)),)
+ifneq ($(filter ele_maguro ele_toro,$(TARGET_PRODUCT)),)
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapstartsize=8m \
     dalvik.vm.heapgrowthlimit=96m \
@@ -106,6 +106,9 @@ PRODUCT_PACKAGES += \
         ELELauncher \
         LockClock \
         SpeedDemon
+
+# Common dictionaries
+PRODUCT_PACKAGE_OVERLAYS += vendor/event/ele/overlay/dictionaries
 
 # extras
 PRODUCT_COPY_FILES += \
