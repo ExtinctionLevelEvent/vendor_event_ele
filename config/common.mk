@@ -1,4 +1,4 @@
-PRODUCT_BRAND ?= E.L.E
+PRODUCT_BRAND ?= ele
 
 # extinction level event
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -68,7 +68,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.config.alarm_alert=Nobelium.ogg
 endif
 
-ifneq ($(filter ele_mako ele_t0lte,$(TARGET_PRODUCT)),)
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapstartsize=128m \
     dalvik.vm.heapgrowthlimit=320m \
@@ -78,18 +77,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heaptargetutilization=0.75 \
     dalvik.vm.heapidealfree=8388608 \
     dalvik.vm.heapconcurrentstart=2097152
-endif
-
-# killr tuna
-ifneq ($(filter ele_maguro ele_toro,$(TARGET_PRODUCT)),)
-PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.heapstartsize=8m \
-    dalvik.vm.heapgrowthlimit=96m \
-    dalvik.vm.heapsize=256m \
-    dalvik.vm.heaptargetutilization=0.75 \
-    dalvik.vm.heapminfree=512k \
-    dalvik.vm.heapmaxfree=8m
-endif
 
 # sysinit and sysctl support
 PRODUCT_COPY_FILES += \
