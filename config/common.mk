@@ -108,7 +108,9 @@ PRODUCT_PACKAGES += \
         SpeedDemon
 
 # Common dictionaries
-PRODUCT_PACKAGE_OVERLAYS += vendor/event/ele/overlay/dictionaries
+PRODUCT_PACKAGE_OVERLAYS += vendor/event/ele/overlay/dictionaries \
+# Common dictionaries
+PRODUCT_PACKAGE_OVERLAYS += vendor/event/ele/overlay/dict
 
 # extras
 PRODUCT_COPY_FILES += \
