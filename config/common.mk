@@ -83,6 +83,10 @@ PRODUCT_COPY_FILES += \
     vendor/event/ele/prebuilt/system/bin/sysinit:system/bin/sysinit \
     vendor/event/ele/prebuilt/system/etc/sysctl.conf:system/etc/sysctl.conf
 
+# dsp
+PRODUCT_COPY_FILES += \
+    vendor/event/ele/prebuilt/system/lib/libcyanogen-dsp.so:system/lib/soundfx/libcyanogen-dsp.so \
+
 # Copy SuperSu
 PRODUCT_COPY_FILES += \
     vendor/event/ele/prebuilt/system/app/SuperSU.apk:system/app/SuperSU.apk \
